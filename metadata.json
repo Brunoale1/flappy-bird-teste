@@ -1,0 +1,5 @@
+{
+  "name": "Flappy React",
+  "description": "Um clone simples e viciante do Flappy Bird construído com React, TypeScript e Canvas API para performance suave de 60 FPS.",
+  "requestFramePermissions": []
+}
