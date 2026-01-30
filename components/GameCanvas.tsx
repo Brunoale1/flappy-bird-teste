@@ -283,31 +283,48 @@ const GameCanvas: React.FC = () => {
       )}
 
       {gameState === GameState.GAME_OVER && (
-        <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/60 z-20">
-          <div className="bg-[#ded895] border-4 border-[#e86101] p-6 rounded-lg text-center shadow-lg transform transition-all animate-in fade-in zoom-in duration-300">
-            <h2 className="text-4xl text-[#e86101] font-bold mb-6 drop-shadow-[2px_2px_0_#fff]">
+        <div className="absolute inset-0 z-20 overflow-hidden flex flex-col justify-between">
+          
+          {/* Background Image Layer */}
+          <div 
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{ 
+              backgroundImage: `url('https://scontent.fcau12-1.fna.fbcdn.net/v/t39.30808-6/623365914_122113835997148617_7157475870769065823_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=127cfc&_nc_ohc=pQQKlBiXTmoQ7kNvwF6SahL&_nc_oc=AdktbY2yV0L3CUkFtoD6py1zNcwTuydW4qfeQsQGM-qviJxDvptW8N5vZ5oZJzRPnJj6GDIlv-lf9WBMjhVJGCnW&_nc_zt=23&_nc_ht=scontent.fcau12-1.fna&_nc_gid=5vvC8XfUtqBnvnhM9rS0Qw&oh=00_AfqZIDV6Uj2SUun_F5cv4jzwrtdNPMmjRWOEigMyXuSR2w&oe=69828FB0')` 
+            }}
+          />
+
+          {/* Gradient Overlay for text readability */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/80" />
+
+          {/* Top Content: Game Over & Score */}
+          <div className="relative z-10 pt-10 px-6 flex flex-col items-center animate-in fade-in slide-in-from-top duration-500">
+            <h2 className="text-5xl text-[#e86101] font-bold mb-4 drop-shadow-[3px_3px_0_#fff]">
               GAME OVER
             </h2>
             
-            <div className="flex flex-col gap-2 mb-6">
-              <div className="flex justify-between w-48 text-xl">
-                <span className="text-[#e86101]">Score:</span>
-                <span className="text-white font-bold drop-shadow-[1px_1px_0_#000]">{score}</span>
+            <div className="flex gap-8 mt-2 bg-black/40 p-3 rounded-xl backdrop-blur-sm border border-white/20">
+              <div className="flex flex-col items-center">
+                <span className="text-[#f4ce42] text-lg font-bold drop-shadow-sm tracking-wider">SCORE</span>
+                <span className="text-4xl text-white font-bold drop-shadow-md">{score}</span>
               </div>
-              <div className="flex justify-between w-48 text-xl">
-                <span className="text-[#c99b06]">Best:</span>
-                <span className="text-white font-bold drop-shadow-[1px_1px_0_#000]">{Math.max(score, highScore)}</span>
+              <div className="w-px bg-white/30"></div>
+              <div className="flex flex-col items-center">
+                <span className="text-[#f4ce42] text-lg font-bold drop-shadow-sm tracking-wider">BEST</span>
+                <span className="text-4xl text-white font-bold drop-shadow-md">{Math.max(score, highScore)}</span>
               </div>
             </div>
+          </div>
 
+          {/* Bottom Content: Button */}
+          <div className="relative z-10 pb-8 px-6 animate-in fade-in slide-in-from-bottom duration-500">
             <button 
               onClick={(e) => {
                 e.stopPropagation();
                 resetGame();
               }}
-              className="bg-[#4ec0ca] hover:bg-[#3da0a9] text-white font-bold py-3 px-8 rounded border-b-4 border-[#2c8690] active:border-b-0 active:translate-y-1 transition-all text-xl shadow-md"
+              className="w-full bg-[#4ec0ca] hover:bg-[#3da0a9] text-white font-bold py-4 rounded-xl border-b-4 border-[#2c8690] active:border-b-0 active:translate-y-1 transition-all text-2xl shadow-xl uppercase tracking-wider"
             >
-              JOGAR
+              JOGAR NOVAMENTE
             </button>
           </div>
         </div>
